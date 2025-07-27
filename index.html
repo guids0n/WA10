@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WA10 Soluções Contábeis oferece serviços de contabilidade, consultoria contábil, gestão financeira, atendimento remoto, abertura de empresas, regularização fiscal e assessoria trabalhista em Brasília. Nossa missão é contribuir para o crescimento sustentável dos negócios de nossos clientes com soluções contábeis de confiança.">
+    <meta name="keywords" content="Contabilidade, Consultoria Contábil, Gestão Financeira, Atendimento Remoto, Abertura de Empresas, Regularização Fiscal, Assessoria Trabalhista, Brasília, WA10 Soluções Contábeis">
+    <meta name="author" content="WA10 Soluções Contábeis">
+    <title>WA10 Soluções Contábeis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="slide.js" defer></script>
+    <script src="botoes.js" defer></script>
+    <script src="menu.js" defer></script>
+</head>
+<body>
+        
+<nav>
+    <div class="nav-conteudo">
+        <a href="#" class="logo-menu"><img class="logo-menu" src="Icones/Logo.svg" alt="Logo em azul claro e branco escrito WA10."></a>
+
+        <div class="menu-links" id="menu-links-pc">
+            <a href="#pag-servicos"><b>SERVIÇOS</b></a>
+            <a href="#pag-sobre"><b>SOBRE NÓS</b></a>
+            <a href="#pag-contato"><b>CONTATO</b></a>
+        </div>
+
+        <div class="pesquisa-container" id="pesquisa-container">
+            <input type="search" class="search-input" id="search-input" placeholder="Pesquisar">
+            <button class="botao-pesquisa" id="botao-pesquisa" aria-label="Abrir/Fechar pesquisa">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="menu-lateral" id="menu-lateral">
+        <a href="#pag-servicos"><b>SERVIÇOS</b></a>
+        <a href="#pag-sobre"><b>SOBRE NÓS</b></a>
+        <a href="#pag-contato"><b>CONTATO</b></a>
+    </div>
+
+    <button class="menu-hamburguer" id="menu-hamburguer" aria-label="Abrir menu">
+        <span class="linha"></span>
+        <span class="linha"></span>
+        <span class="linha"></span>
+    </button>
+</nav>
+
+    <header>
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="slide" src="img/Banner1.jpg" alt="Uma pessoa está digitando em um laptop, com gráficos e números visíveis na tela. Ao lado do laptop, há uma prancheta com um documento e uma caneta."> 
+                    <div class="sobreposicao-slide"> 
+                        <div class="conteudo-alinhado-d-slide"> 
+                        <h1 class="titulo-legenda">Consultoria Contábil</h1>
+                        <p class="texto-servico">Transformamos seus dados contábeis em estratégias inteligentes para o crescimento do seu negócio.</p>
+                        </div>
+
+                        <div class="conteudo-alinhado-e-slide"> 
+                            <div class="logo"><img id="logo" src="Icones/Logo.svg" alt="Logo em azul claro e branco escrito WA10."></div>
+                            <p class="texto-acao">Entre em contato conosco e saiba mais sobre nossos serviços.</p>
+                            <button class="botao-acao"><a href="#pag-contato">Entre em contato</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="slide" src="img/Banner2.jpg" alt="Uma pessoa está usando uma caneta para apontar para um documento com gráficos e tabelas, enquanto a outra mão opera uma calculadora. Há um laptop ao fundo.">
+                    <div class="sobreposicao-slide">
+                        <div class="conteudo-alinhado-d-slide">
+                        <h1 class="titulo-legenda">Atendimento Remoto</h1>
+                        <p class="texto-servico">Fale com nossos especialistas com a mesma segurança de uma reunião presencial, mas com a agilidade que só o ambiente digital oferece.</p>
+                       </div> 
+                       <div class="conteudo-alinhado-e-slide">
+                            <div class="logo"><img id="logo" src="Icones/Logo.svg" alt="Logo em azul claro e branco escrito WA10."></div>
+                            <p class="texto-acao">Experimente a praticidade do nosso atendimento digital</p>
+                            <button class="botao-acao"><a href="#pag-contato">Entre em Contato</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="slide" src="img/Banner3.jpg" alt="Uma mão estendida, com a palma para cima, mostra uma projeção de um gráfico de barras com uma seta apontando para cima, simbolizando crescimento.">
+                    <div class="sobreposicao-slide">
+                        <div class="conteudo-alinhado-d-slide">
+                        <h1 class="titulo-legenda">Gestão Financeira</h1>
+                        <p class="texto-servico">Deixe a rotina financeira conosco e ganhe mais tempo para focar no que realmente importa: o crescimento da sua empresa.</p>
+                        </div>
+                        <div class="conteudo-alinhado-e-slide">
+                            <div class="logo"><img id="logo" src="Icones/Logo.svg" alt="Logo em azul claro e branco escrito WA10."></div>
+                            <p class="texto-acao">Descubra como podemos cuidar do seu financeiro.</p>
+                            <button class="botao-acao"><a href="#pag-contato">Entre em contato</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-control-next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </header>
+
+    <article id="frase"> 
+        <p id>“O contador é a bússola de uma empresa. Com base nos elementos que ele fornece, o empresário sabe se vai ter sucesso ou insucesso. A Contabilidade dá uma dimensão do que passou e a projeção do futuro.”</p>
+    </article>
+
+    <main id="pag-servicos">
+        <h2>SERVIÇOS</h2>
+        
+        <div id="servicos"> 
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_1.svg" alt=""> 
+                </div>
+                <div class="titulo-servico">
+                    <h4>Consultoria Contábil</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card"> Análise e orientação de especialistas para suas decisões de negócio.</p> <!--Classe específica para o P dos cards-->
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_2.svg" alt="">
+                </div>
+                <div class="titulo-servico">
+                    <h4>Abertura de Empresas</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card">Seu CNPJ emitido de forma rápida, correta e sem burocracia.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_3.svg" alt="">
+                </div>
+                <div class="titulo-servico">
+                    <h4>Gestão Financeira</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card">Tenha total visibilidade e controle do seu fluxo de caixa e contas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_4.svg" alt="">
+                </div>
+                <div class="titulo-servico">
+                    <h4>Assessoria Trabalhista e Previdenciária</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card">Mantenha sua empresa em dia e livre de riscos e multas trabalhistas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_5.svg" alt="">
+                </div>
+                <div class="titulo-servico">
+                    <h4>Regularização de Pendências Fiscais</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card">Solucionamos as pendências fiscais para sua empresa operar com tranquilidade.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icone">
+                    <img src="Icones/Servico_6.svg" alt="">
+                </div>
+                <div class="titulo-servico">
+                    <h4>Atendimento Remoto</h4>
+                </div>
+                <div class="descricao-servico">
+                    <p class="p-card">Sua contabilidade 100% digital. Resolva tudo online, de onde estiver.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="pag-sobre"> 
+        <h2>SOBRE NÓS</h2>
+        <div class="conteudo-sobre">
+            <div id="foto-sobre"> 
+                <img src="img/Seção-sobre.jpg" alt="Uma pessoa está analisando documentos financeiros com uma lupa em uma mão e usando uma caneta e uma calculadora com a outra mão.">
+            </div>
+            <div id="texto-sobre-nos"> 
+            <p>WA10 Soluções Contábeis nasceu em 1996 com o objetivo de contribuir para o crescimento sustentável dos negócios de seus clientes.</p>
+
+            <p>Nossa equipe de trabalho é formada por excelentes profissionais, sempre à disposição do cliente, para ouvi-lo e analisar suas reais necessidades. Contamos com técnicos especializados que conferem credibilidade e confiança.</p>
+
+            <p>Não queremos ser apenas prestadores de serviços, acreditamos que a nossa responsabilidade frente às necessidades dos nossos clientes coloca-nos na posição de time, aquele que se apresenta ao seu lado em todos os trabalhos </p>
+            </div>
+        </div>
+
+        <div class="mvv-container">
+        <div class="missao-visao-valores">
+            <div class="sobre-icone"> <img src="Icones/missao.svg" alt=""></div>
+            <div class="sobre-titulo"><h4>Missão</h4></div>
+            <div class="sobre-texto"><p>Contribuir para o crescimento sustentável dos nossos clientes com soluções contábeis de confiança.</p></div>
+        </div>
+
+        <div class="missao-visao-valores">
+            <div class="sobre-icone"><img src="Icones/visao.svg" alt=""></div>
+            <div class="sobre-titulo"><h4>Visão</h4></div>
+            <div class="sobre-texto"><p>Ser a principal parceira no sucesso e crescimento de cada cliente, construindo relações de máxima confiança.</p></div>
+        </div>
+        <div class="missao-visao-valores">
+            <div class="sobre-icone"><img src="Icones/valores.svg" alt=""></div>
+            <div class="sobre-titulo"><h4>Valores</h4></div>
+            <div class="sobre-texto"><p>Parceria, Excelência e Confiança, Foco no Cliente e Comprometimento</p></div>
+        </div>
+
+        
+
+    </section>
+
+    <section id="pag-contato">
+        <h2>CONTATO</h2>
+
+        <div class="formulario">
+            <form action="#" method="get">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" name="telefone" id="telefone" required placeholder="(XX) XXXXX-XXXX" pattern="\(\d{2}\) \d{5}-\d{4}" title="Formato: (XX) XXXXX-XXXX">
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required   placeholder="Digite seu e-mail">
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Escreva sua mensagem"></textarea>
+
+                <div class="botoes-form"> <button type="submit" class="botao-enviar">Enviar</button> <button type="button" class="botao-cancelar">Cancelar</button> </div>
+            </form>
+
+            <div id="mapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.936165154478!2d-47.9538421!3d-15.8073196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a311fd2cb652d%3A0x65cdfd1df3371b3e!2zV0ExMCBTb2x1w6fDtWVzIENvbnTDoWJlaXM!5e0!3m2!1spt-BR!2sbr!4v1752683069348!5m2!1spt-BR!2sbr" width="30%" height="450" style="border: 1px;;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <div id="infos">
+            <div class="funcionamento">
+                <h4>Horário de atendimento</h4>
+                <p>Segunda a Sexta-feira das 08:00 às 18:00</p>
+            </div>
+            <div class="funcionamento">
+                <h4>Endereço</h4>
+                <p>SIA Trecho 01, Lote 230, Ed. Bradesco, Salas 101, 102 e 109, Brasília - DF, CEP: 71.200-010.</p>
+            </div>
+            <div class="funcionamento">
+                <h4>Contatos</h4>
+                <p>contatowa@wacontabilidade.com.br </p>
+                <p>(61) 3361-1637 (61) 99174-1522</p>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="bt-topo"> 
+        <a href="#"><img src="Icones/topo.svg" alt="Clique para voltar ao topo"></a>
+    </div>
+
+    <div id="whats"><img src="Icones/logo-whatsapp.svg" alt="Logo Whatsapp"></div>
+
+    <div id="insta"><img src="Icones/logo_instagram.svg"></div>
+
+    <div id="face"><img src="Icones/logo_facebook.svg"></div>
+    
+    <footer>
+        <p>Todos os direitos reservados <strong>Eduardo Soares</strong> e <strong>Guidson Barreto</strong>  2025</p>
+    </footer>
+
+</body>
+</html>
