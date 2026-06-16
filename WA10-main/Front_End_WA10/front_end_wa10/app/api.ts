@@ -1,4 +1,4 @@
-const BASE_URL = "https://wa10-api.onrender.com/";
+const BASE_URL = "https://wa10-api.onrender.com";
 
 export interface LoginRequest {
     email: string;
