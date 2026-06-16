@@ -12,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
@@ -33,12 +33,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                // Delegamos o CORS para o CorsFilter definido abaixo
-                .cors(cors -> {}) 
+                // Conectamos o CORS diretamente ao filtro que definimos abaixo
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // LIBERAÇÃO ESSENCIAL PARA O CORS (o preflight OPTIONS)
+                        // LIBERAÇÃO TOTAL PARA O "PREFLIGHT" (OPTIONS)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
+                        
                         .requestMatchers(HttpMethod.POST, "/api/contatos").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/usuarios/**").authenticated()
@@ -53,13 +54,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        // Obtém a URL do Front-End da variável de ambiente no Render
         String frontendUrl = System.getenv("WA10_FRONTEND_URL");
         
+        // Log para ver no console do Render o que está acontecendo
+        System.out.println("DEBUG: WA10_FRONTEND_URL lida pelo Java: " + frontendUrl);
+
         config.setAllowedOrigins(Arrays.asList("http://localhost:3000", 
             (frontendUrl != null ? frontendUrl : "https://wa10-portal.onrender.com")));
             
@@ -68,6 +71,6 @@ public class SecurityConfig {
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Cache-Control"));
         
         source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
+        return source;
     }
 }
