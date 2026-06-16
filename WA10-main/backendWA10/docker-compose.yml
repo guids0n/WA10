@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados MySQL
+  mysql-db:
+    image: mysql:8.0
+    container_name: wa10_database
+    restart: always
+    environment:
+      MYSQL_DATABASE: wa10_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 2. Servidor Local de E-mails (Mailpit)
+  mailpit:
+    image: axllent/mailpit
+    container_name: wa10_mailpit
+    restart: always
+    ports:
+      - "8025:8025" # Porta da Interface Web (para ver os e-mails no navegador)
+      - "1025:1025" # Porta SMTP (para o Spring Boot enviar os e-mails)
+
+volumes:
+  mysql_data:
+
+
+# 3. O nosso Front-End em Next.js
+  frontend:
+    build: 
+      context: ../Front_End_WA10/front_end_wa10 # Caminho para a pasta do Front
+    container_name: wa10_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql-db # Só liga o Front depois que o banco estiver pronto
