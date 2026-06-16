@@ -33,9 +33,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> {}) // O CorsFilter abaixo cuidará das permissões
+                // Delegamos o CORS para o CorsFilter definido abaixo
+                .cors(cors -> {}) 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // LIBERAÇÃO ESSENCIAL PARA O CORS (o preflight OPTIONS)
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
                         .requestMatchers(HttpMethod.POST, "/api/contatos").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/usuarios/**").authenticated()
@@ -54,6 +57,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
+        // Obtém a URL do Front-End da variável de ambiente no Render
         String frontendUrl = System.getenv("WA10_FRONTEND_URL");
         
         config.setAllowedOrigins(Arrays.asList("http://localhost:3000", 
