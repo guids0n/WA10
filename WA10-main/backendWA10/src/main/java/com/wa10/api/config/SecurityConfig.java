@@ -1,54 +1,27 @@
 package com.wa10.api.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+// ... mantenha todos os seus imports originais e adicione estes dois:
+import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
-
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig {
-
-    @Autowired
-    private SecurityFilter securityFilter;
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+// ... dentro da sua classe SecurityConfig ...
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                // 1. Desativa CSRF
                 .csrf(csrf -> csrf.disable())
-                // 👉 AQUI ESTÁ A MÁGICA: Conectando o CORS com o nosso Bean lá embaixo
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                
+                // 2. AQUI A MUDANÇA: Em vez de usar .cors() com source, 
+                // vamos confiar que o CorsFilter (bean abaixo) vai tratar tudo
+                .cors(cors -> {}) 
                 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(HttpMethod.POST, "/api/contatos").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
-
                         .requestMatchers("/usuarios/**").authenticated()
                         .requestMatchers("/api/v1/documentos/**").authenticated()
-
-                        .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/swagger-ui.html").permitAll()
-
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 );
 
@@ -57,27 +30,20 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 👉 O BEAN QUE LIBERA O SEU FRONT-END NO RENDER E O SEU LOCALHOST
+    // 3. Este Bean cria um filtro de CORS que é aplicado antes de QUALQUER coisa
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        // Lê a URL do seu Front-End lá das variáveis do Render
-        String frontendUrl = System.getenv("WA10_FRONTEND_URL");
-
-        if (frontendUrl != null && !frontendUrl.isEmpty()) {
-            configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", frontendUrl));
-        } else {
-            configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        }
-
-        // Métodos e cabeçalhos permitidos para a sua API funcionar 100%
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Cache-Control"));
-        configuration.setAllowCredentials(true);
-
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+        CorsConfiguration config = new CorsConfiguration();
+
+        String frontendUrl = System.getenv("WA10_FRONTEND_URL");
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", 
+            (frontendUrl != null ? frontendUrl : "https://wa10-portal.onrender.com")));
+            
+        config.setAllowCredentials(true);
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Cache-Control"));
+        
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
-}
