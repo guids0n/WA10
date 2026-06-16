@@ -10,7 +10,6 @@ import com.wa10.api.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "http://localhost:3000")
 public class UsuarioController {
 
     @Autowired
