@@ -129,7 +129,7 @@ export default function PortalCliente() {
         try {
             const token = localStorage.getItem("token");
 
-            const resposta = await fetch(`http://localhost:8080/api/v1/documentos/download/${uuid}`, {
+            const resposta = await fetch(`https://wa10-api.onrender.com/api/v1/documentos/download/${uuid}`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
